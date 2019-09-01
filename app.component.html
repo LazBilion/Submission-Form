@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
+        <div
+        id="subscription-data"
+        ngModelGroup = "subscriptionData"
+        #subscriptionData="ngModelGroup">
+        <div class="form-group">
+          <label for='email'>Email:</label>
+          <input
+          type = 'email'
+          id= 'email'
+          class = 'form-control'
+          ngModel
+          name = 'email'
+          required
+          email
+          #email='ngModel'>
+          <span class="help-block" *ngIf="!email.valid && email.touched">Please enter an Email</span>
+        </div>
+        <div class="form-group">
+          <label for = 'subscription'>Choose a subscription you desire:</label>
+          <select 
+          name = 'subscription' 
+          id = 'subscription'
+          class = 'form-control'
+          [ngModel] = 'defaultSubscription'>
+          <option value = "basic">Basic</option>
+          <option value = "advanced">Advanced</option>
+          <option value = "pro">Pro</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for = "password">Password</label>
+          <input
+          type = 'password'
+          id ='password'
+          class = 'form-control'
+          name = 'password'
+          ngModel
+          required
+          #password='ngModel'>
+          <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a correct password</span>
+        </div>
+        <p *ngIf="!signupForm.valid && signupForm.touched">the Form is invalid!</p>
+      </div>
+        <button class="btn btn-primary" type = "submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Subscription details:</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Password: {{ user.password }}</p>
+      <p>Your subscription: {{ user.subscription }}</p>
+    </div>
+  </div>
+</div>
+
+
